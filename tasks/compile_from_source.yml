@@ -1,5 +1,5 @@
 - name: "Build {{DOCKER_IMAGE_NAME}} docker image"
-  shell: "nohup docker build --build-arg rustup_version={{RUSTUP_VERSION}} --build-arg  parity_version={{PARITY_VERSION}} -t {{DOCKER_IMAGE_NAME}} {{DOCKER_FOLDER}} > file.log &"
+  shell: "nohup docker build --build-arg rversion={{RUSTUP_VERSION}} --build-arg  pversion={{PARITY_VERSION}} -t {{DOCKER_IMAGE_NAME}} {{DOCKER_FOLDER}} > file.log &"
   register: run_container 
 
 - name: Wait to pull Ubuntu 16.04
