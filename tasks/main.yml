@@ -1,2 +1,7 @@
 ---
 # tasks file for igordcsouza.parity
+- include: moving_docker_files.yml
+
+- include: compile_from_source.yml
+
+- include: moving_binary_to_s3.yml        

@@ -1,0 +1,16 @@
+---
+- name: Create docker folder
+  file:
+    path: "{{ DOCKER_FOLDER }}"
+    state: directory
+    mode: 0755
+
+- name: Move Dockerfile to docker folder
+  copy:
+    src: Dockerfile
+    dest: "{{DOCKER_FOLDER}}/Dockerfile"
+
+- name: Move docker Makefile to docker folder
+  copy:
+    src: Makefile
+    dest: "{{DOCKER_FOLDER}}/Makefile"

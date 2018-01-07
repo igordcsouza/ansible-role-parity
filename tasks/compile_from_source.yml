@@ -1,0 +1,12 @@
+- name: Build docker image
+  docker_image:
+    path: "{{ DOCKER_FOLDER }}"
+    name: "{{ DOCKER_IMAGE_NAME }}"
+
+- name: Run docker container to get the binary
+  docker_container:
+    state: present
+    image: "{{ DOCKER_IMAGE_NAME }}"
+    command: cp parity/target/release/parity release/
+    volumes:
+      - /root/home:/home/release

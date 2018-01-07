@@ -1,2 +1,6 @@
 ---
 # defaults file for igordcsouza.parity
+AWS_ACCESS_KEY:
+AWS_SECRET_KEY:
+DOCKER_IMAGE_NAME: "parity"
+DOCKER_FOLDER: "/root/docker"

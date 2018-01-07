@@ -1,0 +1,17 @@
+- name: Create bucket on S3
+  s3_bucket:
+    name: parity_challenge
+    policy: "{{ lookup('file', 'policy.json') }}"
+    versioning: yes
+    aws_access_key: "{{ AWS_ACCESS_KEY }}"
+    aws_secret_key: "{{ AWS_SECRET_KEY }}"
+    state: present
+
+- name: Upload binary to public S3
+  aws_s3:
+    bucket: parity_challenge
+    object: release/parity
+    src: /root/home/parity
+    mode: put
+    aws_access_key: "{{ AWS_ACCESS_KEY }}"
+    aws_secret_key: "{{ AWS_SECRET_KEY }}"
