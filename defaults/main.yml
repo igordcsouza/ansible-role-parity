@@ -5,3 +5,6 @@ AWS_SECRET_KEY:
 DOCKER_IMAGE_NAME: "parity"
 DOCKER_FOLDER: "/root/docker"
 RELEASE_PATH: "/root/release"
+BINARY_NAME: "parity"
+RUSTUP_VERSION: stable
+PARITY_VERSION: stable
