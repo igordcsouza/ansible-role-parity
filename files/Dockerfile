@@ -8,4 +8,4 @@ COPY Makefile .
 RUN make rustup rustup_version
 ENV PATH=/root/.cargo/bin:$PATH
 RUN make parity parity_version
-# CMD ["cp","parity/target/release/parity", "release/parity"]
+CMD ["cp","parity/target/release/parity", "release/parity"]
