@@ -10,8 +10,8 @@
 - name: Upload binary to public S3
   aws_s3:
     bucket: parity_challenge
-    object: release/parity
-    src: /root/home/parity
+    object: "release/{{BINARY_NAME}}"
+    src: "{{RELEASE_PATH}}/parity"
     mode: put
     aws_access_key: "{{ AWS_ACCESS_KEY }}"
     aws_secret_key: "{{ AWS_SECRET_KEY }}"

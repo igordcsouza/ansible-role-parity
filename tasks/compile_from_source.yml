@@ -1,12 +1,31 @@
-- name: Build docker image
-  docker_image:
-    path: "{{ DOCKER_FOLDER }}"
-    name: "{{ DOCKER_IMAGE_NAME }}"
+- name: "Build {{DOCKER_IMAGE_NAME}} docker image"
+  shell: "nohup docker build -t {{DOCKER_IMAGE_NAME}} {{DOCKER_FOLDER}} > file.log &"
+  register: run_container 
+
+- name: Wait to pull Ubuntu 16.04
+  shell: "docker images | grep ubuntu"
+  register: no1_result
+  retries: 60
+  until: no1_result.rc == 0
+  delay: 60
+
+- name: Waiting to build {{ DOCKER_IMAGE_NAME}} image!
+  shell: "docker images | grep {{ DOCKER_IMAGE_NAME }}"
+  register: no2_result
+  retries: 60
+  until: no2_result.rc == 0
+  delay: 60
 
 - name: Run docker container to get the binary
-  docker_container:
-    state: present
-    image: "{{ DOCKER_IMAGE_NAME }}"
-    command: cp parity/target/release/parity release/
-    volumes:
-      - /root/home:/home/release
+  shell: "docker run -v {{RELEASE_PATH}}/:/home/release ipar"
+  # docker_container:
+  #   name: "{{ DOCKER_IMAGE_NAME }}"
+  #   state: present
+  #   # image: "{{ DOCKER_IMAGE_NAME }}"
+  #   image: ipar
+  #   volumes:
+  #     - /root/release:/home/release
+  
+- name: Check if binary are on correct folder
+  shell: "ls /{{RELEASE_PATH}}/parity"
+  
