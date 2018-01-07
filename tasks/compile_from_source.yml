@@ -14,7 +14,7 @@
   register: no2_result
   retries: 60
   until: no2_result.rc == 0
-  delay: 60
+  delay: 120
 
 - name: Run docker container to get the binary
   shell: "docker run -v {{RELEASE_PATH}}/:/home/release {{DOCKER_IMAGE_NAME}}"
